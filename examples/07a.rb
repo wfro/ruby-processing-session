@@ -9,6 +9,8 @@ def setup
 
   @x = 0
   @y = 240
+  @w = 100
+  @h = 100
 end
 
 def draw
@@ -17,7 +19,7 @@ def draw
   stroke 255
   stroke_width 5
 
-  ellipse @x, @y, 100, 100
+  ellipse @x, @y, @w, @h
 end
 
 def key_pressed
@@ -25,5 +27,24 @@ def key_pressed
     warn "A key was pressed coded with #{keyCode}."
   else
     warn "Key pressed: #{key.inspect}"
+  end
+
+  case keyCode
+  when 38 then @y -= 10
+  when 40 then @y += 10
+  when 37 then @x -= 10
+  when 39 then @x += 10
+  end
+
+  case key
+  when 'r'
+    @x = 240
+    @y = 240
+  when '='
+    @w += 10
+    @h += 10
+  when '-'
+    @h -= 10
+    @w -= 10
   end
 end
